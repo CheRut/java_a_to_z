@@ -1,0 +1,22 @@
+<project>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>ru.dimcher.part002.start</groupId>
+	<artifactId>start</artifactId>
+	<name>start</name>
+	<version>1.0</version>
+	<packaging>jar</packaging>
+	
+	<parent>
+		<groupId>ru.dimcher.part002</groupId>
+		<artifactId>part002</artifactId>
+		<version>1.0</version>
+	</parent>
+	
+	<dependencies>
+    <dependency>
+      <groupId>ru.dimcher.part002.models</groupId>
+      <artifactId>models</artifactId>
+      <version>1.0</version>
+    </dependency>
+	</dependencies>
+</project>

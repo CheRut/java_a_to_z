@@ -1,0 +1,20 @@
+<project>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>ru.dimcher.part002</groupId>
+	<artifactId>part002</artifactId>
+	<name>part002</name>
+	<version>1.0</version>
+	<packaging>pom</packaging>
+	
+	<parent>
+		<groupId>ru.dimcher</groupId>
+		<artifactId>tracker</artifactId>
+		<version>1.0</version>
+	</parent>
+	
+	<modules>
+		<module>models</module>
+		<module>start</module>
+		</modules>
+	
+</project>
