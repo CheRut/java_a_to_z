@@ -1,6 +1,6 @@
-package start;
+package ru.dimcher.part002.start;
 
-import models.*;
+import ru.dimcher.part002.models.*;
 
 import java.util.*;
 

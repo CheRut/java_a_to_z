@@ -1,5 +1,5 @@
-package start;
-import models.*;
+package ru.dimcher.part002.start;
+import ru.dimcher.part002.models.*;
 /**
  * Created by dimsan on 02.07.2016.
  */

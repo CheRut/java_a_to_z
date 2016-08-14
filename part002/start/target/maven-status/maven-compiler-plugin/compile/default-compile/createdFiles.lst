@@ -1,6 +1,5 @@
-start\ConsoleInput.class
-start\StartUi.class
-start\Input.class
-start\StartUiTest.class
-start\Tracker.class
-start\StubInput.class
+ru\dimcher\part002\start\Input.class
+ru\dimcher\part002\start\StartUi.class
+ru\dimcher\part002\start\Tracker.class
+ru\dimcher\part002\start\StubInput.class
+ru\dimcher\part002\start\ConsoleInput.class

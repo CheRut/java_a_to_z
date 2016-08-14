@@ -1,4 +1,4 @@
-package models;
+package ru.dimcher.part002.models;
 
 public class Comments extends Item {
     private String comm;

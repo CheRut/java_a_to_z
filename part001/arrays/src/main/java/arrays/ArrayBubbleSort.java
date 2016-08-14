@@ -43,7 +43,13 @@ public class ArrayBubbleSort {
     }
         return arr;
 }
-
+public static void main(String[] args){
+	ArrayBubbleSort abs = new ArrayBubbleSort();
+	int[] rndm = new int[]{2,4,5,1,9,7,6,3,8};
+	int[] exp = new int[]{1,2,3,4,5,6,7,8,9};
+	abs.bubbleSort(rndm);
+	System.out.println(Arrays.toString(rndm));
+}
 }
 
 

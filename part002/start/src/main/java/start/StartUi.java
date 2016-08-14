@@ -1,15 +1,17 @@
-package start;
+package ru.dimcher.part002.start;
 
-import models.*;
 
 public class StartUi{
     private Input input;
+		Tracker tracker;
     public StartUi(Input input){
         this.input = input;
     }
     public void init(){
+		
         Tracker tracker = new Tracker();
-        tracker.mainMenu();
+        
+		tracker.mainMenu();
         tracker.menuChoosing();
         tracker.getAll();
 		}

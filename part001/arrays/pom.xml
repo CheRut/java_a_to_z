@@ -1,14 +1,16 @@
-<project>
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>ru.dimcher.part001.arrays</groupId>
-	<artifactId>arrays</artifactId>
-	<name>arrays</name>
-	<version>1.0</version>
-	<packaging>jar</packaging>
-	
-	<parent>
-		<groupId>ru.dimcher.part001</groupId>
-		<artifactId>part001</artifactId>
-		<version>1.0</version>
-	</parent>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>ru.dimcher.part001</groupId>
+    <artifactId>arrays</artifactId>
+    <version>1.0</version>
+    <packaging>jar</packaging>
+    <name>arrays</name>
+
+    <parent>
+        <groupId>ru.dimcher.part001</groupId>
+        <artifactId>part001</artifactId>
+        <version>1.0</version>
+        <relativePath>../../pom.xml</relativePath>
+    </parent>
 </project>

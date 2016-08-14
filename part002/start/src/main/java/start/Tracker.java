@@ -1,6 +1,7 @@
-package start;
+package ru.dimcher.part002.start;
 
-import models.*;
+import ru.dimcher.part002.models.*;
+
 import java.util.*;
 
 public class Tracker {
@@ -9,16 +10,27 @@ public class Tracker {
     private int position = 0;
     private ConsoleInput consoleInput;
     private static final Random Rn = new Random();
-
-
-
+	
+	public Tracker()
+	{
+		this(10);
+	}
+	
+	/**
+	* Constructor for tracker.
+	* @param size of items list.
+	*/
+	public Tracker(int size) {
+		items = new Item[size];
+		position = 0;
+	}
+	
     public Item add(Item item) {
-        this.items[position++] = item;
+		this.items[position++] = item;
         item.setId(String.valueOf(position));
         return item;
     }
-
-
+	
     public Item findById(String id) {
         Item result = null;
         for (Item item : items) {
@@ -31,8 +43,8 @@ public class Tracker {
         }
         return result;
     }
-
-   public Item[] getAll() {
+	
+	public Item[] getAll() {
          Item[] result = new Item[position];
         for (int index = 0; index != this.position; index++) {
             result[index] = this.items[index];
@@ -46,17 +58,18 @@ public class Tracker {
         System.out.println("");
         return result;
     }
-
-public void editById(Item item) {
+	
+	public void editById(Item item,String name,String description) {
     Item result = item;
     for (Item item1 : this.items) {
         if (item1==(result)) {
-            item1.setName(cInput.ask("please,enter the name: "));
-            item1.setDescription(cInput.ask("please,enter the description: "));
+            item1.setName(name);
+            item1.setDescription(description);
         }
     }
 }
-    public int menuChoosing() {
+    
+	public int menuChoosing() {
           int option = cInput.chooseOption("please, enter the number of needed option: ");
         switch (option) {
             case 0:
@@ -69,7 +82,7 @@ public void editById(Item item) {
                 add(new Task("fourth task", "fourth desc"));
                 break;
             case 2:
-                editById(findById(cInput.ask("please choose the id: ")));
+                editById(findById(cInput.ask("please choose the id: ")),cInput.ask("please,enter the name"),cInput.ask("please,enter the description"));
                 break;
             case 3:
                 deleteById(findById(cInput.ask("please,enter the id you want to delete: ")));
@@ -91,10 +104,8 @@ public void editById(Item item) {
         }
         return mainMenu();
     }
-
    
-  
-    public int mainMenu() {
+	public int mainMenu() {
         System.out.println(" ");
         String[] menuList = {"1.Add request", "2.Edit request", "3.Delete request",
                 "4.Show request list", "5.Show request list by filter",
@@ -105,8 +116,8 @@ public void editById(Item item) {
         System.out.println("********************************************************");
 return menuChoosing();
     }
-//удаляем заявку по Id:
-    public void deleteById(Item item) {
+   
+	public void deleteById(Item item) {
         Item result = item;
         for (Item item1 : this.items) {
             if (item1==(result)) {
@@ -115,7 +126,8 @@ return menuChoosing();
             }
         }
     }
-    public Item addComments(Item item){
+   
+	public Item addComments(Item item){
         Comments result = null;
         for (Item it:this.items){
             if ( it.equals(item)){
@@ -126,8 +138,8 @@ return menuChoosing();
         }
 return result;
     }
-
-    public Item[] findBy() {
+   
+	public Item[] findBy() {
         Item[] result = new Item[10];
         for (int i = 0; i <items.length ; i++) {
             for (int j = 0; j <items.length ; j++) {
@@ -140,16 +152,15 @@ return result;
 
         return result;
     }
-
-    public Item[] getItems() {
+    
+	public Item[] getItems() {
         return items;
     }
-
-    public void setItems(Item[] items) {
+    
+	public void setItems(Item[] items) {
         this.items = items;
     
 
 }
-
 }
 

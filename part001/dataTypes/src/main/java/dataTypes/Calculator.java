@@ -15,8 +15,9 @@ public class Calculator {
      * @param second второй аргумент
      * @return результат
      */
-    public void add(double first,double second){
+   public double add(double first,double second){
         result = first + second;
+		return result;
     }
     /**
      * Вычитание:
@@ -24,8 +25,9 @@ public class Calculator {
      * @param second второй аргумент
      * @return результат
      */
-    public void substract(double first,double second){
+    public double substract(double first,double second){
         result = first - second;
+		return result;
     }
     /**
      * Умножение:

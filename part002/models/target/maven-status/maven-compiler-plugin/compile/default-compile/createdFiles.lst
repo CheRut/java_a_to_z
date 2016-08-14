@@ -1,4 +1,4 @@
-models\Task.class
-models\Item.class
-models\Comments.class
-models\Bug.class
+ru\dimcher\part002\models\Bug.class
+ru\dimcher\part002\models\Task.class
+ru\dimcher\part002\models\Comments.class
+ru\dimcher\part002\models\Item.class

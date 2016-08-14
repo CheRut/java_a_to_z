@@ -1,22 +1,62 @@
-<project>
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>ru.dimcher.part002.start</groupId>
-	<artifactId>start</artifactId>
-	<name>start</name>
-	<version>1.0</version>
-	<packaging>jar</packaging>
-	
-	<parent>
-		<groupId>ru.dimcher.part002</groupId>
-		<artifactId>part002</artifactId>
-		<version>1.0</version>
-	</parent>
-	
-	<dependencies>
-    <dependency>
-      <groupId>ru.dimcher.part002.models</groupId>
-      <artifactId>models</artifactId>
-      <version>1.0</version>
-    </dependency>
-	</dependencies>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>ru.dimcher</groupId>
+    <artifactId>start</artifactId>
+    <version>1.0</version>
+    <packaging>jar</packaging>
+    <name>start</name>
+
+    <parent>
+        <groupId>ru.dimcher</groupId>
+        <artifactId>part002</artifactId>
+        <version>1.0</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <dependencies>
+        <dependency>
+            <groupId>ru.dimcher</groupId>
+            <artifactId>models</artifactId>
+            <version>1.0</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <addMavenDescriptor>false</addMavenDescriptor>
+                        <compress>true</compress>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <classpathPrefix>libs/</classpathPrefix>
+                            <mainClass>ru.dimcher.part002.start.StartUi</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+                <version>2.4</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/libs</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+                <version>2.5.1</version>
+            </plugin>
+        </plugins>
+    </build>
 </project>
