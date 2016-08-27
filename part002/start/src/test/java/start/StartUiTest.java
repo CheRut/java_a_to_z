@@ -38,6 +38,7 @@ public class StartUiTest{
 	
 	@Test
     public void editItemTester() {
+		
         for (int index = 0; index < tracker.getItems().length; index++) {
             tracker.editById((tracker.getItems()[1]), "dmitry", "junior");
             String expected = "dmitry";

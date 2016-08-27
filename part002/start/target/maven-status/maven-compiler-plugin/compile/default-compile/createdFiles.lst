@@ -1,4 +1,6 @@
 ru\dimcher\part002\start\Input.class
+ru\dimcher\part002\start\SomeActions.class
+ru\dimcher\part002\start\MenuTracker.class
 ru\dimcher\part002\start\StartUi.class
 ru\dimcher\part002\start\Tracker.class
 ru\dimcher\part002\start\StubInput.class

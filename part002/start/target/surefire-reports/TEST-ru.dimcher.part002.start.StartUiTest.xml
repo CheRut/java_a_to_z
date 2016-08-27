@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="4" failures="0" name="ru.dimcher.part002.start.StartUiTest" time="0.015" errors="0" skipped="0">
+<testsuite tests="4" failures="0" name="ru.dimcher.part002.start.StartUiTest" time="0.025" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_71\jre\bin"/>
@@ -63,8 +63,8 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="ru.dimcher.part002.start.StartUiTest" name="commentAddingTester" time="0.009"/>
-  <testcase classname="ru.dimcher.part002.start.StartUiTest" name="editItemTester" time="0.003"/>
-  <testcase classname="ru.dimcher.part002.start.StartUiTest" name="getItemListTest" time="0.002"/>
-  <testcase classname="ru.dimcher.part002.start.StartUiTest" name="deleteItemTester" time="0.001"/>
+  <testcase classname="ru.dimcher.part002.start.StartUiTest" name="commentAddingTester" time="0.017"/>
+  <testcase classname="ru.dimcher.part002.start.StartUiTest" name="editItemTester" time="0.008"/>
+  <testcase classname="ru.dimcher.part002.start.StartUiTest" name="getItemListTest" time="0"/>
+  <testcase classname="ru.dimcher.part002.start.StartUiTest" name="deleteItemTester" time="0"/>
 </testsuite>
