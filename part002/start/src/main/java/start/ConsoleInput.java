@@ -19,6 +19,4 @@ public class ConsoleInput implements Input {
 		System.out.print(question);
 		return scanner.nextInt();
 	}
-
-
 }
