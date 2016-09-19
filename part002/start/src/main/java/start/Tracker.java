@@ -1,13 +1,10 @@
 package ru.dimcher.part002.start;
-
 import ru.dimcher.part002.models.*;
 
 /**
- * Class Tracker extends the abstract method and
- * shows the possibilities of the  application
- * */
-
-public class Tracker extends SomeActions {
+ * Created by dimsan on 18.09.2016.
+ */
+public class Tracker {
     /**
      * All values are stored in this array
      * */
@@ -39,7 +36,7 @@ public class Tracker extends SomeActions {
      * @return: adding item
      *
      * */
-    @Override
+
     public Item add(Item item) {
         this.items[position++] = item;
         item.setId(String.valueOf(position));
@@ -52,7 +49,7 @@ public class Tracker extends SomeActions {
      * @return: finding item
      *
      * */
-    @Override
+
     public Item findById(String id) {
         Item result = null;
         for (Item item : items) {
@@ -75,7 +72,7 @@ public class Tracker extends SomeActions {
             if(items[index] instanceof Comments){
                 Comments comments = (Comments) result[index];
                 System.out.println(comments.getName() + " " + comments.getDescription()
-                        +" "+(comments.getComm()));
+                        +" "+(comments.getComments()));
             }
         }
         System.out.println("");
@@ -86,7 +83,7 @@ public class Tracker extends SomeActions {
      * @param: item - element of the list
      * @param: items - list of items
      * */
-    @Override
+
     public void editById(Item item,String name,String description) {
         Item result = item;
         for (Item item1 : this.items) {
@@ -102,7 +99,7 @@ public class Tracker extends SomeActions {
      * @param: item - element of the list
      * @param: items - list of items
      * */
-    @Override
+
     public void deleteById(Item item) {
         Item result = item;
         for (Item item1 : this.items) {
@@ -116,14 +113,14 @@ public class Tracker extends SomeActions {
      * This method adds comments item
      * @param: items - list of items
      * */
-    @Override
+
     public Item addComments(Item item){
         Comments result = null;
         for (Item it:this.items){
             if ( it.equals(item)){
                 System.out.println(it.getName());
                 result =(Comments) it;
-                ((Comments)result).setComm(cInput.ask("please add the comments: "));
+                ((Comments)result).setComments(cInput.ask("please add the comments: "));
             }
         }
         return result;
@@ -133,7 +130,7 @@ public class Tracker extends SomeActions {
      * @param: items -  list of items
      * @param: result -  new list of items
      * */
-    @Override
+
     public Item[] findBy() {
         Item[] result = new Item[10];
         for (int i = 0; i <items.length ; i++) {
