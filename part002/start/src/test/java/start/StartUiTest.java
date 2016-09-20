@@ -1,11 +1,11 @@
-package ru.dimcher.part002.start;
+package start;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
-import ru.dimcher.part002.models.*;
+import models.*;
 
 public class StartUiTest{	
 	private Tracker tracker;

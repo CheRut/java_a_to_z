@@ -1,16 +1,16 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>ru.dimcher</groupId>
+    <groupId>ru.dimcher.part002.models</groupId>
     <artifactId>models</artifactId>
+	<name>models</name>
     <version>1.0</version>
     <packaging>jar</packaging>
-    <name>models</name>
+    
 
     <parent>
-        <groupId>ru.dimcher</groupId>
+        <groupId>ru.dimcher.part002</groupId>
         <artifactId>part002</artifactId>
         <version>1.0</version>
-        <relativePath>../pom.xml</relativePath>
     </parent>
 </project>

@@ -1,4 +1,4 @@
-package ru.dimcher.part002.start;
+package start;
 
 public interface Input{
      

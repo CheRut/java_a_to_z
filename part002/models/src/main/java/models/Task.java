@@ -1,4 +1,4 @@
-package ru.dimcher.part002.models;
+package models;
 
 public class Task extends Item{
 	public Task (String name,String desc){

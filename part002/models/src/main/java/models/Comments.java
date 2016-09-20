@@ -1,8 +1,9 @@
-package ru.dimcher.part002.models;
+package models;
 
 public class Comments extends Item {
-    private String comm;
-    public Comments(){}
+    public String comments;
+    
+	public Comments(){}
 
     public Comments(String name,String desc){
         this.name = name;
@@ -14,12 +15,12 @@ public class Comments extends Item {
 
         this.name = name;
         this.description = desc;
-        this.comm = comments;
+        this.comments = comments;
     }
-    public String getComm(){return this.comm;}
+    public String getComments(){return this.comments;}
 
-    public void setComm(String comm) {
-        this.comm = comm;
+    public void setComments(String comments) {
+        this.comments = comments;
     }
 }
 

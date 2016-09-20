@@ -1,5 +1,6 @@
-package ru.dimcher.part002.start;
-import ru.dimcher.part002.models.*;
+package start;
+
+import  models.*;
 
 /**
  * Created by dimsan on 18.09.2016.
@@ -63,8 +64,8 @@ public class Tracker {
         return result;
     }
 
-    public Item[] getAll() {
-        Item[] result = new Item[position];
+   /* /*  public Item[] getAll() { 
+         Item[] result = new Item[position];
         for (int index = 0; index != this.position; index++) {
             result[index] = this.items[index];
             System.out.printf(result[index].getId() + ". ");
@@ -73,11 +74,11 @@ public class Tracker {
                 Comments comments = (Comments) result[index];
                 System.out.println(comments.getName() + " " + comments.getDescription()
                         +" "+(comments.getComments()));
-            }
+            } 
         }
         System.out.println("");
-        return result;
-    }
+        return result; 
+    } */
     /**
      * This method edits the selected item
      * @param: item - element of the list
@@ -114,7 +115,7 @@ public class Tracker {
      * @param: items - list of items
      * */
 
-    public Item addComments(Item item){
+    /* public Item addComments(Item item){
         Comments result = null;
         for (Item it:this.items){
             if ( it.equals(item)){
@@ -124,7 +125,8 @@ public class Tracker {
             }
         }
         return result;
-    }
+		
+    }*/
     /**
      * This method filters array , leaving only the elements with even serial numbers
      * @param: items -  list of items

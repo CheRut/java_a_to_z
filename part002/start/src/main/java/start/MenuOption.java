@@ -1,4 +1,4 @@
-package ru.dimcher.part002.start;
+package start;
 
 /**
  * Created by dimsan on 18.09.2016.

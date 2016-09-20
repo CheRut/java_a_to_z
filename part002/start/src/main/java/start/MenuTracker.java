@@ -1,6 +1,6 @@
-package ru.dimcher.part002.start;
+package start;
 
-import ru.dimcher.part002.models.Item;
+import models.Item;
 
 import java.util.Arrays;
 
