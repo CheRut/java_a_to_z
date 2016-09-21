@@ -1,0 +1,14 @@
+start\ConsoleInput.class
+start\StartUi.class
+start\Input.class
+start\MenuTracker$MenuShowByFilterItem.class
+start\MenuItem.class
+start\MenuTracker$MenuShowAllItem.class
+start\Tracker.class
+start\MenuTracker$MenuDeleteItem.class
+start\MenuTracker$MenuEditItem.class
+start\MenuTracker.class
+start\MenuOption.class
+start\MenuTracker$MenuAddItem.class
+start\MenuTracker$MenuCommentItem.class
+start\StubInput.class

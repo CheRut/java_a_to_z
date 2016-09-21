@@ -64,7 +64,7 @@ public class Tracker {
         return result;
     }
 
-   /* /*  public Item[] getAll() { 
+     public Item[] getAll() { 
          Item[] result = new Item[position];
         for (int index = 0; index != this.position; index++) {
             result[index] = this.items[index];
@@ -76,9 +76,10 @@ public class Tracker {
                         +" "+(comments.getComments()));
             } 
         }
+		
         System.out.println("");
         return result; 
-    } */
+    } 
     /**
      * This method edits the selected item
      * @param: item - element of the list
@@ -115,7 +116,7 @@ public class Tracker {
      * @param: items - list of items
      * */
 
-    /* public Item addComments(Item item){
+     public Item addComments(Item item){
         Comments result = null;
         for (Item it:this.items){
             if ( it.equals(item)){
@@ -126,7 +127,7 @@ public class Tracker {
         }
         return result;
 		
-    }*/
+    }
     /**
      * This method filters array , leaving only the elements with even serial numbers
      * @param: items -  list of items

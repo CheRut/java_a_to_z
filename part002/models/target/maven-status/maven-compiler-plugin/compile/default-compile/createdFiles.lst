@@ -1,0 +1,4 @@
+models\Task.class
+models\Item.class
+models\Comments.class
+models\Bug.class
