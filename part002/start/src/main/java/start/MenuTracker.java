@@ -1,8 +1,7 @@
 package start;
 
+import models.Comments;
 import models.Item;
-
-import java.util.Arrays;
 
 /**
  * Created by dimsan on 19.09.2016.
@@ -11,154 +10,142 @@ public class MenuTracker {
     private String[] menuItems;
     private ConsoleInput cIn;
     private Tracker tracker;
+    private int position = 0;
 
-    public MenuTracker() {
-    }
 
-    public MenuTracker(ConsoleInput cIn, Tracker tracker) {
+    public MenuTracker(ConsoleInput cIn,Tracker tracker) {
         this.cIn = cIn;
         this.tracker = tracker;
     }
 
-    public  String[] menuNamesFilling(){
-        menuItems = new String[7];
-        menuItems[0] = "Exit";
-        menuItems[1] = "Addtem";
-        menuItems[2] = "Edit Item";
-        menuItems[3] = "Remove Item";
-        menuItems[4] = "Show all Items";
-        menuItems[5] = "Show by filter";
-        menuItems[6] = "Add comments Item";
+
+
+    public String[] menuNamesFilling() {
+        menuItems = new String[6];
+        menuItems[0] = "Add Item";
+        menuItems[1] = "Edit Item";
+        menuItems[2] = "Remove Item";
+        menuItems[3] = "Show all Items";
+        menuItems[4] = "Show by filter";
+        menuItems[5] = "Add comments Item";
 
         return menuItems;
     }
-    class MenuAddItem extends MenuItem {
 
-        public MenuAddItem(int id) {
-            super(id);
-        }
+        class MenuAddItem extends MenuItem {
+
 
         public int menuItemId() {
             return 1;
         }
-
         @Override
         public void menuItemInfo(ConsoleInput cIn, Tracker tracker) {
-//            String name = cIn.ask("Please enter the name of the new Item");
-//            String description = cIn.ask("Please enter the description of the new Item ");
-//            tracker.add(new Item(name,description));
             System.out.println("Adding the new Item");
+            String name = cIn.ask("Please enter the  name of the new Item");
+            String description = cIn.ask("Please enter the description of the new Item ");
+            tracker.add(new Comments(name,description));
         }
     }
 
     class MenuEditItem extends MenuItem {
 
-            public MenuEditItem(int id) {
-                super(id);
-            }
 
-            public int menuItemId() {
-                return 2;
-            }
-
-            @Override
-            public void menuItemInfo(ConsoleInput cIn, Tracker tracker) {
-//            String name = cIn.ask("Please enter the name of the new Item");
-//            String description = cIn.ask("Please enter the description of the new Item ");
-//            tracker.add(new Item(name,description));
-                System.out.println("Editing the  Item");
-            }
+        public int menuItemId() {
+            return 2;
         }
-    class MenuDeleteItem extends MenuItem{
-            public MenuDeleteItem(int id) {
-                super(id);
-            }
 
-            public int menuItemId() {
-                return 3;
-            }
-
-            @Override
-            public void menuItemInfo(ConsoleInput cIn, Tracker tracker) {
-//            String name = cIn.ask("Please enter the name of the new Item");
-//            String description = cIn.ask("Please enter the description of the new Item ");
-//            tracker.add(new Item(name,description));
-                System.out.println("Deleting the  Item");
-            }
+        @Override
+        public void menuItemInfo(ConsoleInput cIn, Tracker tracker) {
+            System.out.println("Editing the  Item");
+            String id = cIn.ask("Please,enter the needed id");
+            String name = cIn.ask("Please enter a new name for a given item");
+            String description = cIn.ask("Please enter a new description for a given item");
+            tracker.editById(tracker.findById(id),name,description);
         }
-    class MenuShowAllItem extends MenuItem{
-        public MenuShowAllItem(int id) {
-                super(id);
-            }
-
-            public int menuItemId() {
-                return 4;
-            }
-
-            @Override
-            public void menuItemInfo(ConsoleInput cIn, Tracker tracker) {
-//            String name = cIn.ask("Please enter the name of the new Item");
-//            String description = cIn.ask("Please enter the description of the new Item ");
-//            tracker.add(new Item(name,description));
-                System.out.println("Show all  Item");
-            }
-        }
-    class  MenuShowByFilterItem extends MenuItem{
-            public  MenuShowByFilterItem(int id) {
-                super(id);
-            }
-
-            public int menuItemId() {
-                return 5;
-            }
-
-            @Override
-            public void menuItemInfo(ConsoleInput cIn, Tracker tracker) {
-//            String name = cIn.ask("Please enter the name of the new Item");
-//            String description = cIn.ask("Please enter the description of the new Item ");
-//            tracker.add(new Item(name,description));
-                System.out.println("Show Item by filter");
-            }
-        }
-    class  MenuCommentItem extends MenuItem{
-            public  MenuCommentItem(int id) {
-                super(id);
-            }
-
-            public int menuItemId() {
-                return 6;
-            }
-
-            @Override
-            public void menuItemInfo(ConsoleInput cIn, Tracker tracker) {
-//            String name = cIn.ask("Please enter the name of the new Item");
-//            String description = cIn.ask("Please enter the description of the new Item ");
-//            tracker.add(new Item(name,description));
-                System.out.println("Add comment to Item");
-            }
-        }
-    public void optionSelect(int key){
-        this.menuAction[key].menuItemInfo(cIn,tracker);
     }
-    MenuOption[] menuAction = new MenuOption[10];
 
-        public void menuActionFilling() {
-            menuAction[0] = new MenuAddItem(1);
-            menuAction[1] = new MenuEditItem(2);
-            menuAction[2] = new MenuDeleteItem(3);
-            menuAction[3] = new MenuShowAllItem(4);
-            menuAction[4] = new MenuShowByFilterItem(5);
-            menuAction[5] = new MenuCommentItem(6);
+    class MenuDeleteItem extends MenuItem {
+
+        public int menuItemId() {
+            return 3;
+        }
+
+        @Override
+        public void menuItemInfo(ConsoleInput cIn, Tracker tracker) {
+            System.out.println("Item removing");
+            String id = cIn.ask("Please,enter the id you want to delete");
+            tracker.deleteById(tracker.findById(id));
 
         }
-public void showMenu(){
-    for (int i = 0; i <menuNamesFilling().length ; i++) {
-        System.out.println(i+". "+menuNamesFilling()[i]);
+
     }
+
+    class MenuShowAllItem extends MenuItem {
+
+        public int menuItemId() {
+            return 4;
+        }
+
+        @Override
+        public void menuItemInfo(ConsoleInput cIn, Tracker tracker) {
+            System.out.println("Show all Item");
+            tracker.getAll();
+        }
+           }
+
+    class MenuShowByFilterItem extends MenuItem {
+
+        public int menuItemId() {
+            return 5;
+        }
+        @Override
+        public void menuItemInfo(ConsoleInput cIn, Tracker tracker) {
+            System.out.println("Show by filter");
+            tracker.findBy();
+        }
+    }
+
+    class MenuCommentItem extends MenuItem {
+
+        public int menuItemId() {
+            return 6;
+        }
+        @Override
+        public void menuItemInfo(ConsoleInput cIn, Tracker tracker) {
+            System.out.println("Add comment to Item");
+            String id = cIn.ask("Please,enter the id of item which you want to add a comments");
+            tracker.addComments(tracker.findById(id));
+
+        }
+    }
+
+
+    public void optionSelect(int key) {
+        this.menuAction[--key].menuItemInfo(this.cIn, this.tracker);
+
+    }
+
+    private MenuOption[] menuAction = new MenuOption[10];
+
+    public void menuActionFilling() {
+        menuAction[position++] = new MenuAddItem();
+        menuAction[position++] = new MenuEditItem();
+        menuAction[position++] = new MenuDeleteItem();
+        menuAction[position++] = new MenuShowAllItem();
+        menuAction[position++] = new MenuShowByFilterItem();
+        menuAction[position++] = new MenuCommentItem();
+    }
+
+    public void showMenu() {
+        int id=0;
+        for (int i = 0; i < menuNamesFilling().length; i++) {
+            id++;
+            System.out.println(menuAction[i].menuItemId() + ". " + menuNamesFilling()[i]);
+        }
+
+    }
+
 }
-    }
-
-
 
 
 

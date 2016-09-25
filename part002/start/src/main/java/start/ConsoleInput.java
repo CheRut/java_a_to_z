@@ -1,22 +1,24 @@
 package start;
 
-import models.*;
+import models.Item;
 
-import java.util.*;
+import java.util.Scanner;
 
-public class ConsoleInput implements Input {
+/**
+ * Created by dimsan on 18.09.2016.
+ */
+public class ConsoleInput implements InputStrValue,InputIntValue {
+    private Scanner scanner = new Scanner(System.in);
+    private Item item;
+    private int position = 0;
 
-	private Scanner scanner = new Scanner(System.in);
-	private Item item;
-	private int position = 0;
+    public String ask(String question) {
+        System.out.println((char)27 + "[33m"+question+": "+(char)27+"[0m");
+        return scanner.next();
+    }
 
-	public String ask(String question) {
-		System.out.print(question);
-		return scanner.next();
-	}
-
-	public int chooseOption(String question) {
-		System.out.print(question);
-		return scanner.nextInt();
-	}
+    public int chooseOption(String question) {
+        System.out.print((char)27 + "[33m"+question+": "+(char)27+"[0m");
+        return scanner.nextInt();
+    }
 }

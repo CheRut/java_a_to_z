@@ -1,6 +1,5 @@
 package start;
-
-import  models.*;
+import models.*;
 
 /**
  * Created by dimsan on 18.09.2016.
@@ -64,8 +63,8 @@ public class Tracker {
         return result;
     }
 
-     public Item[] getAll() { 
-         Item[] result = new Item[position];
+    public Item[] getAll() {
+        Item[] result = new Item[position];
         for (int index = 0; index != this.position; index++) {
             result[index] = this.items[index];
             System.out.printf(result[index].getId() + ". ");
@@ -74,12 +73,11 @@ public class Tracker {
                 Comments comments = (Comments) result[index];
                 System.out.println(comments.getName() + " " + comments.getDescription()
                         +" "+(comments.getComments()));
-            } 
+            }
         }
-		
         System.out.println("");
-        return result; 
-    } 
+        return result;
+    }
     /**
      * This method edits the selected item
      * @param: item - element of the list
@@ -90,6 +88,7 @@ public class Tracker {
         Item result = item;
         for (Item item1 : this.items) {
             if (item1==(result)) {
+
                 item1.setName(name);
                 item1.setDescription(description);
             }
@@ -116,17 +115,18 @@ public class Tracker {
      * @param: items - list of items
      * */
 
-     public Item addComments(Item item){
-        Comments result = null;
-        for (Item it:this.items){
-            if ( it.equals(item)){
-                System.out.println(it.getName());
-                result =(Comments) it;
-                ((Comments)result).setComments(cInput.ask("please add the comments: "));
+    public void addComments(Item item) {
+        Comments comments;
+        for (int i = 0; i < this.items.length; i++) {
+            items[i] =(Comments) items[i];
+            if (items[i].equals(item)&& items[i] instanceof Comments) {
+                    comments = (Comments) items[i];
+                    System.out.println(comments.getName());
+                    comments.setComments(cInput.ask("please add the comments: "));
             }
+
         }
-        return result;
-		
+
     }
     /**
      * This method filters array , leaving only the elements with even serial numbers
