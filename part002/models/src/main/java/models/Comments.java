@@ -6,8 +6,8 @@ package models;
 public class Comments extends Item {
     public String comments = "there are no comments";
 
-    public Comments(String name, String description, long createData, String comments) {
-        super(name, description, createData);
+    public Comments(String name, String description,String comments) {
+        super(name, description);
         this.comments = comments;
     }
 

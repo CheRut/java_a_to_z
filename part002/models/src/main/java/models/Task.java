@@ -6,8 +6,9 @@ package models;
 public class Task extends Item {
 
 
-    public Task(String name, String description, long createData) {
-        super(name, description, createData);
+
+    public Task(String name, String description) {
+        super(name, description);
     }
 
     public Task() {
