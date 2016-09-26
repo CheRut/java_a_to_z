@@ -7,6 +7,6 @@ public abstract class  MenuItem implements MenuOption{
     abstract public void menuItemInfo(ConsoleInput cIn, Tracker tracker);
 
 
-    //abstract String ItemData();
+
 
 }

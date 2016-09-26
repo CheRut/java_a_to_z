@@ -9,8 +9,7 @@ import java.util.Scanner;
  */
 public class ConsoleInput implements InputStrValue,InputIntValue {
     private Scanner scanner = new Scanner(System.in);
-    private Item item;
-    private int position = 0;
+
 
     public String ask(String question) {
         System.out.println((char)27 + "[33m"+question+": "+(char)27+"[0m");
