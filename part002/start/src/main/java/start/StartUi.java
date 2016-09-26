@@ -12,13 +12,22 @@ public class StartUi  {
         this.cIn = cIn;
         tracker = new Tracker();
     }
-public void greeting(){
+	/*
+	* Method, which shows us the greeting at startup
+	**/
+	public void greeting(){
     System.out.println((char)27+"[33;2mWELCOME TO TRACKER "+(char)27+"[0m");
-}
+	}
+	/*
+	* Method, which shows us some text at the close of the program
+	**/
     public void exitAppText(){
         System.out.println((char)27+"[31;2mcreating by dmiCher  "+(char)27+"[0m");
 
     }
+	/*
+	*Method that initial basic startup functions
+	**/
     public  void init() {
         greeting();
         MenuTracker mTracker = new MenuTracker(this.cIn,this.tracker);
@@ -31,10 +40,7 @@ public void greeting(){
         exitAppText();
     }
     public static void main(String[] args)  {
-        InputStrValue inputStrValue = new ConsoleInput();
         ConsoleInput cIn = new ConsoleInput();
-        Tracker tracker = new Tracker();
-        //new StartUi(cIn).greeting();
         new StartUi(cIn).init();
     }
 }

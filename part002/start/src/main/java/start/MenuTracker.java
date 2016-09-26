@@ -4,21 +4,41 @@ import models.Comments;
 import models.Item;
 
 /**
- * Created by dimsan on 19.09.2016.
+ * This class shows the menu structure, built on the inner classes
  */
 public class MenuTracker {
     private String[] menuItems;
+	
+	/*
+	* An instance of  ConsoleInput to do some input output operations
+	**/
+	
     private ConsoleInput cIn;
+	
+	/*
+	* An instance of Tracker containing the program logic.
+	**/
     private Tracker tracker;
+	
+	
+	
     private int position = 0;
 
-
+/*
+* Constructor that takes an instance of  
+* input - output object,and Tracker instance,
+* to activate needed operations
+**/
+	
     public MenuTracker(ConsoleInput cIn,Tracker tracker) {
         this.cIn = cIn;
         this.tracker = tracker;
     }
 
-
+	/*
+	*	Simple array of the menu items names; 
+	*	@return: array menuItems
+	**/
 
     public String[] menuNamesFilling() {
         menuItems = new String[6];
@@ -32,6 +52,11 @@ public class MenuTracker {
         return menuItems;
     }
 
+	/*
+	* An inner class that inherits from the abstract class,and 
+	* overriding super class method  to add all items by Tracker instance using
+	* @param: menuItemId() method to get the call position 
+	**/
         class MenuAddItem extends MenuItem {
 
 
@@ -46,7 +71,12 @@ public class MenuTracker {
             tracker.add(new Comments(name,description));
         }
     }
-
+	
+	/*
+	* An inner class that inherits from the abstract class,and 
+	* overriding super class method  to edit nedded items by Tracker instance using
+	* @param: menuItemId() method to get the call position 
+	**/
     class MenuEditItem extends MenuItem {
 
 
@@ -63,7 +93,11 @@ public class MenuTracker {
             tracker.editById(tracker.findById(id),name,description);
         }
     }
-
+	/*
+	* An inner class that inherits from the abstract class,and 
+	* overriding super class method to delete needed items by Tracker instance using
+	* @param: menuItemId() method to get the call position 
+	**/
     class MenuDeleteItem extends MenuItem {
 
         public int menuItemId() {
@@ -79,7 +113,11 @@ public class MenuTracker {
         }
 
     }
-
+	/*
+	* An inner class that inherits from the abstract class,and 
+	* overriding super class method  to shows items list by Tracker instance using
+	* @param: menuItemId() method to get the call position 
+	**/
     class MenuShowAllItem extends MenuItem {
 
         public int menuItemId() {
@@ -92,7 +130,11 @@ public class MenuTracker {
             tracker.getAll();
         }
            }
-
+    /*
+        * An inner class that inherits from the abstract class,and
+        * overriding super class method  to shows the items by specific filter,for example by id with even values
+        * @param: menuItemId() method to get the call position
+        **/
     class MenuShowByFilterItem extends MenuItem {
 
         public int menuItemId() {
@@ -104,7 +146,11 @@ public class MenuTracker {
             tracker.findBy();
         }
     }
-
+	/*
+	* An inner class that inherits from the abstract class,and 
+	* overriding super class method  to add a comments to needed item
+	* @param: menuItemId() method to get the call position 
+	**/
     class MenuCommentItem extends MenuItem {
 
         public int menuItemId() {
@@ -118,7 +164,9 @@ public class MenuTracker {
 
         }
     }
-
+/**
+*	Method, which takes the value of the selected menu item
+*/
 
     public void optionSelect(int key) {
         this.menuAction[--key].menuItemInfo(this.cIn, this.tracker);
@@ -126,7 +174,10 @@ public class MenuTracker {
     }
 
     private MenuOption[] menuAction = new MenuOption[10];
-
+	/*
+	*	Array of the MenuOption object instances for implementation all inners classes
+	*	By using key value,we can choose the needed option
+	**/
     public void menuActionFilling() {
         menuAction[position++] = new MenuAddItem();
         menuAction[position++] = new MenuEditItem();
