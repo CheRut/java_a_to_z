@@ -1,7 +1,8 @@
 package start;
 
-import models.Comments;
-import models.Item;
+import models.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * This class shows the menu structure, built on the inner classes
@@ -103,14 +104,19 @@ public class MenuTracker {
         public int menuItemId() {
             return 3;
         }
-
+        Logger logger = Logger.getLogger(Tracker.class.getName());
         @Override
         public void menuItemInfo(ConsoleInput cIn, Tracker tracker) {
             System.out.println("Item removing");
             String id = cIn.ask("Please,enter the id you want to delete");
+           try{
             tracker.deleteById(tracker.findById(id));
+        }catch(NullPointerException e){
+            String errMessage ="SUCH VALUE DOESN'T EXIST";
+            logger.log(Level.WARNING,errMessage);
 
-        }
+			}
+		}   
 
     }
 	/*
