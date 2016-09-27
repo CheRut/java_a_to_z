@@ -1,6 +1,8 @@
 package start;
 
-import models.*;
+import models.Comments;
+import models.Item;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -9,7 +11,8 @@ import java.util.logging.Logger;
  */
 public class MenuTracker {
     private String[] menuItems;
-	
+    Logger lg = Logger.getLogger(Tracker.class.getName());
+
 	/*
 	* An instance of  ConsoleInput to do some input output operations
 	**/
@@ -69,7 +72,7 @@ public class MenuTracker {
             System.out.println("Adding the new Item");
             String name = cIn.ask("Please enter the  name of the new Item");
             String description = cIn.ask("Please enter the description of the new Item ");
-            tracker.add(new Comments(name,description));
+            tracker.add(new Item(name,description));
         }
     }
 	
@@ -89,6 +92,7 @@ public class MenuTracker {
         public void menuItemInfo(ConsoleInput cIn, Tracker tracker) {
             System.out.println("Editing the  Item");
             String id = cIn.ask("Please,enter the needed id");
+
             String name = cIn.ask("Please enter a new name for a given item");
             String description = cIn.ask("Please enter a new description for a given item");
             tracker.editById(tracker.findById(id),name,description);
@@ -104,19 +108,12 @@ public class MenuTracker {
         public int menuItemId() {
             return 3;
         }
-        Logger logger = Logger.getLogger(Tracker.class.getName());
         @Override
         public void menuItemInfo(ConsoleInput cIn, Tracker tracker) {
             System.out.println("Item removing");
             String id = cIn.ask("Please,enter the id you want to delete");
-           try{
             tracker.deleteById(tracker.findById(id));
-        }catch(NullPointerException e){
-            String errMessage ="SUCH VALUE DOESN'T EXIST";
-            logger.log(Level.WARNING,errMessage);
-
-			}
-		}   
+        }
 
     }
 	/*
@@ -133,7 +130,10 @@ public class MenuTracker {
         @Override
         public void menuItemInfo(ConsoleInput cIn, Tracker tracker) {
             System.out.println("Show all Item");
-            tracker.getAll();
+
+
+             tracker.getAll();
+
         }
            }
     /*
@@ -166,6 +166,7 @@ public class MenuTracker {
         public void menuItemInfo(ConsoleInput cIn, Tracker tracker) {
             System.out.println("Add comment to Item");
             String id = cIn.ask("Please,enter the id of item which you want to add a comments");
+
             tracker.addComments(tracker.findById(id));
 
         }
@@ -175,8 +176,12 @@ public class MenuTracker {
 */
 
     public void optionSelect(int key) {
-        this.menuAction[--key].menuItemInfo(this.cIn, this.tracker);
-
+        try {
+            this.menuAction[--key].menuItemInfo(this.cIn, this.tracker);
+        }catch(NullPointerException nPE){String msg = "PLEASE CHECK THE VALUE,THAT YOU HAVE ENTERED ";
+        lg.log(Level.WARNING,msg);}
+        catch(ArrayIndexOutOfBoundsException aIBOE){String msg = "PLEASE CHECK THE VALUE,THAT YOU HAVE ENTERED ";
+            lg.log(Level.WARNING,msg);}
     }
 
     private MenuOption[] menuAction = new MenuOption[10];
@@ -185,6 +190,7 @@ public class MenuTracker {
 	*	By using key value,we can choose the needed option
 	**/
     public void menuActionFilling() {
+
         menuAction[position++] = new MenuAddItem();
         menuAction[position++] = new MenuEditItem();
         menuAction[position++] = new MenuDeleteItem();
