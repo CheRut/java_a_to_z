@@ -3,29 +3,27 @@ package start;
 import models.Comments;
 import models.Item;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * This class shows the menu structure, built on the inner classes
  */
 public class MenuTracker {
     private String[] menuItems;
-    Logger lg = Logger.getLogger(Tracker.class.getName());
+
 
 	/*
 	* An instance of  ConsoleInput to do some input output operations
 	**/
-	
+
     private ConsoleInput cIn;
-	
+
 	/*
 	* An instance of Tracker containing the program logic.
 	**/
     private Tracker tracker;
-	
-	
-	
+
+
+
     private int position = 0;
 
 /*
@@ -33,7 +31,7 @@ public class MenuTracker {
 * input - output object,and Tracker instance,
 * to activate needed operations
 **/
-	
+
     public MenuTracker(ConsoleInput cIn,Tracker tracker) {
         this.cIn = cIn;
         this.tracker = tracker;
@@ -65,7 +63,7 @@ public class MenuTracker {
 
 
         public int menuItemId() {
-            return 1;
+            return 0;
         }
         @Override
         public void menuItemInfo(ConsoleInput cIn, Tracker tracker) {
@@ -75,7 +73,7 @@ public class MenuTracker {
             tracker.add(new Item(name,description));
         }
     }
-	
+
 	/*
 	* An inner class that inherits from the abstract class,and 
 	* overriding super class method  to edit nedded items by Tracker instance using
@@ -85,46 +83,52 @@ public class MenuTracker {
 
 
         public int menuItemId() {
-            return 2;
+            return 1;
         }
 
         @Override
         public void menuItemInfo(ConsoleInput cIn, Tracker tracker) {
             System.out.println("Editing the  Item");
             String id = cIn.ask("Please,enter the needed id");
-
-            String name = cIn.ask("Please enter a new name for a given item");
-            String description = cIn.ask("Please enter a new description for a given item");
-            tracker.editById(tracker.findById(id),name,description);
+            if (tracker.findById(id) != null) {
+                String name = cIn.ask("Please enter a new name for a given item");
+                String description = cIn.ask("Please enter a new description for a given item");
+                tracker.editById(tracker.findById(id), name, description);
+            } else {
+                 new MenuOutOfException("item with id "+id+" is not found!\nCheck the correctness of the input data");
+            }
         }
     }
 	/*
-	* An inner class that inherits from the abstract class,and 
+	* An inner class that inherits from the abstract class,and
 	* overriding super class method to delete needed items by Tracker instance using
-	* @param: menuItemId() method to get the call position 
+	* @param: menuItemId() method to get the call position
 	**/
     class MenuDeleteItem extends MenuItem {
 
         public int menuItemId() {
-            return 3;
+            return 2;
         }
         @Override
         public void menuItemInfo(ConsoleInput cIn, Tracker tracker) {
             System.out.println("Item removing");
             String id = cIn.ask("Please,enter the id you want to delete");
-            tracker.deleteById(tracker.findById(id));
+            if (tracker.findById(id) != null) {
+                tracker.deleteById(tracker.findById(id));
+            } else {
+                new MenuOutOfException("item with id "+id+" is not found!\nCheck the correctness of the input data");
+            }
         }
-
     }
 	/*
-	* An inner class that inherits from the abstract class,and 
+	* An inner class that inherits from the abstract class,and
 	* overriding super class method  to shows items list by Tracker instance using
-	* @param: menuItemId() method to get the call position 
+	* @param: menuItemId() method to get the call position
 	**/
     class MenuShowAllItem extends MenuItem {
 
         public int menuItemId() {
-            return 4;
+            return 3;
         }
 
         @Override
@@ -144,7 +148,7 @@ public class MenuTracker {
     class MenuShowByFilterItem extends MenuItem {
 
         public int menuItemId() {
-            return 5;
+            return 4;
         }
         @Override
         public void menuItemInfo(ConsoleInput cIn, Tracker tracker) {
@@ -153,22 +157,27 @@ public class MenuTracker {
         }
     }
 	/*
-	* An inner class that inherits from the abstract class,and 
+	* An inner class that inherits from the abstract class,and
 	* overriding super class method  to add a comments to needed item
-	* @param: menuItemId() method to get the call position 
+	* @param: menuItemId() method to get the call position
 	**/
     class MenuCommentItem extends MenuItem {
 
+
         public int menuItemId() {
-            return 6;
+            return 5;
         }
+
         @Override
         public void menuItemInfo(ConsoleInput cIn, Tracker tracker) {
+
             System.out.println("Add comment to Item");
             String id = cIn.ask("Please,enter the id of item which you want to add a comments");
-
-            tracker.addComments(tracker.findById(id));
-
+            if (tracker.findById(id) != null) {
+                tracker.addComments(tracker.findById(id));
+            }else {
+                new MenuOutOfException("item with id "+id+" is not found!\nCheck the correctness of the input data");
+            }
         }
     }
 /**
@@ -176,12 +185,9 @@ public class MenuTracker {
 */
 
     public void optionSelect(int key) {
-        try {
-            this.menuAction[--key].menuItemInfo(this.cIn, this.tracker);
-        }catch(NullPointerException nPE){String msg = "PLEASE CHECK THE VALUE,THAT YOU HAVE ENTERED ";
-        lg.log(Level.WARNING,msg);}
-        catch(ArrayIndexOutOfBoundsException aIBOE){String msg = "PLEASE CHECK THE VALUE,THAT YOU HAVE ENTERED ";
-            lg.log(Level.WARNING,msg);}
+    if(key >= 0 || key <= 5) {
+    this.menuAction[key].menuItemInfo(this.cIn, this.tracker);
+    }else{ new MenuOutOfException("Check the correctness of the input data");}
     }
 
     private MenuOption[] menuAction = new MenuOption[10];

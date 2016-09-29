@@ -56,16 +56,13 @@ public class Tracker {
     public Item findById(String id) {
 
         Item result = null;
-        try{
+
         for (Item item : items) {
             if (item != null && item.getId().equals(id)) {
                 result = item;
-                break;
+break;
             }
         }
-        }catch(NullPointerException findIdError){
-                String errMessage ="SUCH VALUE DOESN'T EXIST";
-                lg.log(Level.WARNING,errMessage);}
         return result;
     }
 
@@ -91,17 +88,15 @@ public class Tracker {
      * */
 
     public void editById(Item item,String name,String description) {
-        try {
-            for (Item item1 : this.items) {
-                if (item1.equals(item)) {
-                    item1.setName(name);
-                    item1.setDescription(description);
-                }
-            }
-        }catch(NullPointerException editError){
-            String msg = "ITEM WITH THIS ID DOES NOT EXIST";
-            lg.log(Level.WARNING,msg,editError);
-        }
+       if(item!=null) {
+           for (Item item1 : this.items) {
+               if (item.equals(item1)) {
+                   item1.setName(name);
+                   item1.setDescription(description);
+               }
+           }
+       }
+
     }
 
     /**
@@ -111,29 +106,26 @@ public class Tracker {
      * */
 
     public void deleteById(Item item) {
-        try {
             for (Item item1 : this.items) {
-                if (item1.equals(item)) {
+                if (item.equals(item1)) {
                     item1.setName(null);
                     item1.setDescription(null);
                 }
             }
-        }catch(NullPointerException editError){
-        String msg = "ITEM WITH THIS ID DOES NOT EXIST";
-        lg.log(Level.WARNING,msg);
+
     }
-    }
+
     /**
      * This method adds comments item
      * @param: items - list of items
      * */
 
     public void addComments(Item item) {
-        Comments comments;
+
         for (int i = 0; i < this.items.length; i++) {
-            items[i] =(Comments) items[i];
+
             if (items[i].equals(item)&& items[i] instanceof Comments) {
-                comments = (Comments) items[i];
+              Comments  comments = (Comments) items[i];
                 System.out.println(comments.getName());
                 comments.setComments(cInput.ask("please add the comments: "));
             }
