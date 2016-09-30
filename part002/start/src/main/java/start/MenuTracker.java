@@ -1,15 +1,18 @@
 package start;
 
-import models.Comments;
+
 import models.Item;
+
+
+import java.util.logging.Logger;
 
 
 /**
  * This class shows the menu structure, built on the inner classes
  */
 public class MenuTracker {
-    private String[] menuItems;
 
+    private Logger lg = Logger.getLogger(getClass().getName());
 
 	/*
 	* An instance of  ConsoleInput to do some input output operations
@@ -24,7 +27,7 @@ public class MenuTracker {
 
 
 
-    private int position = 0;
+    public int position = 0;
 
 /*
 * Constructor that takes an instance of  
@@ -42,17 +45,6 @@ public class MenuTracker {
 	*	@return: array menuItems
 	**/
 
-    public String[] menuNamesFilling() {
-        menuItems = new String[6];
-        menuItems[0] = "Add Item";
-        menuItems[1] = "Edit Item";
-        menuItems[2] = "Remove Item";
-        menuItems[3] = "Show all Items";
-        menuItems[4] = "Show by filter";
-        menuItems[5] = "Add comments Item";
-
-        return menuItems;
-    }
 
 	/*
 	* An inner class that inherits from the abstract class,and 
@@ -60,14 +52,15 @@ public class MenuTracker {
 	* @param: menuItemId() method to get the call position 
 	**/
         class MenuAddItem extends MenuItem {
-
+        public MenuAddItem(String name) {
+            super(name);
+        }
 
         public int menuItemId() {
             return 0;
         }
         @Override
         public void menuItemInfo(ConsoleInput cIn, Tracker tracker) {
-            System.out.println("Adding the new Item");
             String name = cIn.ask("Please enter the  name of the new Item");
             String description = cIn.ask("Please enter the description of the new Item ");
             tracker.add(new Item(name,description));
@@ -76,11 +69,14 @@ public class MenuTracker {
 
 	/*
 	* An inner class that inherits from the abstract class,and 
-	* overriding super class method  to edit nedded items by Tracker instance using
+	* overriding super class method  to edit needed items by Tracker instance using
 	* @param: menuItemId() method to get the call position 
 	**/
     class MenuEditItem extends MenuItem {
 
+        public MenuEditItem(String name) {
+            super(name);
+        }
 
         public int menuItemId() {
             return 1;
@@ -88,14 +84,13 @@ public class MenuTracker {
 
         @Override
         public void menuItemInfo(ConsoleInput cIn, Tracker tracker) {
-            System.out.println("Editing the  Item");
             String id = cIn.ask("Please,enter the needed id");
             if (tracker.findById(id) != null) {
                 String name = cIn.ask("Please enter a new name for a given item");
                 String description = cIn.ask("Please enter a new description for a given item");
                 tracker.editById(tracker.findById(id), name, description);
             } else {
-                 new MenuOutOfException("item with id "+id+" is not found!\nCheck the correctness of the input data");
+                 lg.info("item with id "+id+" is not found!\nCheck the correctness of the input data");
             }
         }
     }
@@ -105,18 +100,20 @@ public class MenuTracker {
 	* @param: menuItemId() method to get the call position
 	**/
     class MenuDeleteItem extends MenuItem {
+        public MenuDeleteItem(String name) {
+            super(name);
+        }
 
         public int menuItemId() {
             return 2;
         }
         @Override
         public void menuItemInfo(ConsoleInput cIn, Tracker tracker) {
-            System.out.println("Item removing");
             String id = cIn.ask("Please,enter the id you want to delete");
             if (tracker.findById(id) != null) {
                 tracker.deleteById(tracker.findById(id));
             } else {
-                new MenuOutOfException("item with id "+id+" is not found!\nCheck the correctness of the input data");
+                lg.info("item with id "+id+" is not found!\nCheck the correctness of the input data");
             }
         }
     }
@@ -126,6 +123,9 @@ public class MenuTracker {
 	* @param: menuItemId() method to get the call position
 	**/
     class MenuShowAllItem extends MenuItem {
+        public MenuShowAllItem(String name) {
+            super(name);
+        }
 
         public int menuItemId() {
             return 3;
@@ -133,11 +133,9 @@ public class MenuTracker {
 
         @Override
         public void menuItemInfo(ConsoleInput cIn, Tracker tracker) {
-            System.out.println("Show all Item");
-
-
-             tracker.getAll();
-
+            for (int i = 0; i <tracker.getAll().length ; i++) {
+                cIn.outPrintln(i+"."+tracker.getAll()[i].getName()+" "+tracker.getAll()[i].getDescription());
+            }
         }
            }
     /*
@@ -146,13 +144,15 @@ public class MenuTracker {
         * @param: menuItemId() method to get the call position
         **/
     class MenuShowByFilterItem extends MenuItem {
+        public MenuShowByFilterItem(String name) {
+            super(name);
+        }
 
         public int menuItemId() {
             return 4;
         }
         @Override
         public void menuItemInfo(ConsoleInput cIn, Tracker tracker) {
-            System.out.println("Show by filter");
             tracker.findBy();
         }
     }
@@ -163,6 +163,9 @@ public class MenuTracker {
 	**/
     class MenuCommentItem extends MenuItem {
 
+        public MenuCommentItem(String name) {
+            super(name);
+        }
 
         public int menuItemId() {
             return 5;
@@ -170,13 +173,11 @@ public class MenuTracker {
 
         @Override
         public void menuItemInfo(ConsoleInput cIn, Tracker tracker) {
-
-            System.out.println("Add comment to Item");
             String id = cIn.ask("Please,enter the id of item which you want to add a comments");
             if (tracker.findById(id) != null) {
                 tracker.addComments(tracker.findById(id));
             }else {
-                new MenuOutOfException("item with id "+id+" is not found!\nCheck the correctness of the input data");
+                lg.info("item with id "+id+" is not found!\nCheck the correctness of the input data");
             }
         }
     }
@@ -187,29 +188,29 @@ public class MenuTracker {
     public void optionSelect(int key) {
     if(key >= 0 || key <= 5) {
     this.menuAction[key].menuItemInfo(this.cIn, this.tracker);
-    }else{ new MenuOutOfException("Check the correctness of the input data");}
+    }else{ lg.info("Check the correctness of the input data");}
     }
 
-    private MenuOption[] menuAction = new MenuOption[10];
+    private MenuItem[] menuAction = new MenuItem[6];
 	/*
 	*	Array of the MenuOption object instances for implementation all inners classes
 	*	By using key value,we can choose the needed option
 	**/
     public void menuActionFilling() {
 
-        menuAction[position++] = new MenuAddItem();
-        menuAction[position++] = new MenuEditItem();
-        menuAction[position++] = new MenuDeleteItem();
-        menuAction[position++] = new MenuShowAllItem();
-        menuAction[position++] = new MenuShowByFilterItem();
-        menuAction[position++] = new MenuCommentItem();
+        menuAction[position++] = new MenuAddItem("Add item");
+        menuAction[position++] = new MenuEditItem("Edit item");
+        menuAction[position++] = new MenuDeleteItem("Delete item");
+        menuAction[position++] = new MenuShowAllItem("Show all items");
+        menuAction[position++] = new MenuShowByFilterItem("Show items by using filter");
+        menuAction[position++] = new MenuCommentItem("Add comments to item");
     }
 
     public void showMenu() {
-        int id=0;
-        for (int i = 0; i < menuNamesFilling().length; i++) {
-            id++;
-            System.out.println(menuAction[i].menuItemId() + ". " + menuNamesFilling()[i]);
+
+        for (int i = 0; i < menuAction.length; i++) {
+
+            System.out.println(i+"."+menuAction[i].name);
         }
 
     }

@@ -14,7 +14,6 @@ public class Tracker {
     private Item[] items = new Item[10];
     private ConsoleInput cInput=new ConsoleInput();
     private int position = 0;
-    Logger lg = Logger.getLogger(Tracker.class.getName());
 
 
     public Tracker()
@@ -54,13 +53,11 @@ public class Tracker {
      * */
 
     public Item findById(String id) {
-
         Item result = null;
-
         for (Item item : items) {
             if (item != null && item.getId().equals(id)) {
                 result = item;
-break;
+                break;
             }
         }
         return result;
@@ -70,15 +67,7 @@ break;
         Item[] result = new Item[position];
         for (int index = 0; index != this.position; index++) {
             result[index] = this.items[index];
-            System.out.printf(result[index].getId() + ". ");
-            System.out.println(result[index].getName() + " " + result[index].getDescription());
-            if(items[index] instanceof Comments){
-                Comments comments = (Comments) result[index];
-                System.out.println(comments.getName() + " " + comments.getDescription()
-                        +" "+(comments.getComments()));
-            }
         }
-        System.out.println("");
         return result;
     }
     /**
@@ -126,7 +115,6 @@ break;
 
             if (items[i].equals(item)&& items[i] instanceof Comments) {
               Comments  comments = (Comments) items[i];
-                System.out.println(comments.getName());
                 comments.setComments(cInput.ask("please add the comments: "));
             }
 
