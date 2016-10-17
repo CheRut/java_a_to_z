@@ -95,15 +95,10 @@ name = "*";
     }
 
     public Chessman forwardMov(Chessman chessman,int yPos) {
-        int x = chessman.getxPosition();
-        int y = chessman.getyPosition()+yPos;
-        String id = chessman.getChessId();
+       
         if(forward){
             System.out.println("There is forward moving");
-            chessman.setxPosition(x);
-            chessman.setyPosition(y);
-            chessman.setChessId(id);
-
+           
         }else{
             System.out.println("Error message");
         }
