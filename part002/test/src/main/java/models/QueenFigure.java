@@ -12,6 +12,8 @@ public class QueenFigure extends Chessman {
         setLeft(true);
         setForward(true);
         setBack(true);
+        setDiagonally(true);
+        setMovementError(false);
     }
 
 

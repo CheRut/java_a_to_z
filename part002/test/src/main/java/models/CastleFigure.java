@@ -8,10 +8,12 @@ public class CastleFigure extends Chessman {
 
     public CastleFigure() {
         setName(NAME);
-        setRight(true);
         setLeft(true);
         setForward(true);
         setBack(true);
+        setRight(true);
+        setMovementError(false);
+
     }
 
 

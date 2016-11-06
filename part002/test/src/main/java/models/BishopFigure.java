@@ -4,15 +4,14 @@ import objects.Chessman;
 
 
 public class BishopFigure extends Chessman {
-    private static final String NAME = "BS";
+    private final String NAME = "BS";
+    private final boolean DIAGONALLY = true;
 
 
     public BishopFigure() {
-    setName(NAME);
-    setRight(true);
-    setLeft(true);
-    setForward(true);
-    setBack(true);
+        setName(NAME);
+        setDiagonally(DIAGONALLY);
+setMovementError(false);
     }
 
 
