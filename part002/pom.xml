@@ -10,6 +10,7 @@
     <modules>
         <module>models</module>
         <module>start</module>
+		<module>test</module>
     </modules>
 	<parent>
 		<groupId>ru.dimcher</groupId>
