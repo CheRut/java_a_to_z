@@ -1,7 +1,10 @@
 package models;
 
 import objects.Chessman;
-
+/**
+ * This class defines the King behavior
+ *
+ * */
 
 public class KingFigure extends Chessman {
     private static final String NAME = "KG";
@@ -10,25 +13,34 @@ public class KingFigure extends Chessman {
     public KingFigure() {
 
         setName(NAME);
-        setForward(true);
-        setBack(true);
-        setLeft(true);
-        setRight(true);
-        setDiagonally(true);
-        kingStopMovement = true;
-        setMovementError(false);
 
-    }
+        }
 
-    public KingFigure(String name, int xPosition, int yPosition) {
-        super(name, xPosition, yPosition);
-    }
-
-    public boolean iskingStopMovement() {
-        return kingStopMovement;
-    }
-
-    public void setkingStopMovement(boolean kingStopMovement) {
-        this.kingStopMovement = kingStopMovement;
+    /**
+     * @param chessman
+     * @param endXPosition
+     * @param endYPosition
+     * @return
+     * */
+    @Override
+    public boolean correctMovement(Chessman chessman, char endXPosition, int endYPosition) {
+        if (chessman != null) {
+            setMovementAllowed(false);
+            int xPos = (int) endXPosition - 64;
+            int baseX = chessman.getXPosition();
+            int baseY = chessman.getYPosition();
+            int xDestination = xPos - baseX;
+            int yDestination = endYPosition - baseY;
+            int xMovement[] = {0, 1, 1, 1, 0, -1, -1, -1};
+            int yMovement[] = {-1, -1, 0, 1, 1, 1, 0, -1};
+            for (int i = 0; i < xMovement.length; i++) {
+                for (int j = 0; j < yMovement.length; j++) {
+                    if (xDestination == xMovement[i] && yDestination == yMovement[i]) {
+                        setMovementAllowed(true);
+                    } else{lg.info(cIO.wrongMovement());}
+                }
+            }
+        }else {lg.info(cIO.nullPointerExcMsg());}
+        return isMovementAllowed();
     }
 }

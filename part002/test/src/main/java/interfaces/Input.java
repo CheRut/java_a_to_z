@@ -1,8 +1,11 @@
 package interfaces;
 
-
+/**
+ * Created by DobleBrain on 07.12.2016.
+ */
 public interface Input {
 
-    public String askText(String question);
-    public int askInt(String question);
+    String ask();
+    char askLit();
+    int cellNumber();
 }
